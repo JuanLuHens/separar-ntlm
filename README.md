@@ -9,11 +9,11 @@ Al import el dump generado por impacket-secretsdump, se generan dos ficheros por
 
 ## Funcionamiento
 
-```bash
+```
 usage: nltmtohash.py [-h] [-e | -i] [--file-secretdumps FILE_SECRETDUMPS] [-efuh EFUH] [-efoh EFOH] [-f FILTRADO [FILTRADO ...]] [-v]
 ```
 
-```bash
+```
 optional arguments:
   -h, --help            show this help message and exit
   -e, --export          Export user&hash and onlyhash
@@ -29,11 +29,11 @@ optional arguments:
 
 Ejemplo básico:
 
-```bash
+```
 python .\nltmtohash.py -e --file-secretdumps usershashes.txt -f domain1.com domain2.org
 ```
 
-```bash
+```
   -e, --export          Para generar los ficheros Usuarios y hash // Solo Hash
   -i, --import          Para importar los ficheros Usuarios y hash // Solo Hash ya crackeado para unificar datos. Proxima versión
   --file-secretdumps Fichero generado por el secretsdump
