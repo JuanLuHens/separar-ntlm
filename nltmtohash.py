@@ -35,10 +35,6 @@ def exporthash(args):
             if (any (dominio in linea for dominio in args.filtrado)) or (regexp.search(linea)):
                 if not any (bad_word in linea for bad_word in bad_words):
                     linea = linea.replace(':',' ')
-                    linea = linea.replace('\\','')
-                    for dominio in args.filtrado:
-                        linea = linea.replace(dominio,'')
-                    #print(linea)
                     usuario.append(re.split("\s",linea)[0])
                     hash.append(re.split("\s",linea)[3])
     listado = dict(zip(usuario,hash))
