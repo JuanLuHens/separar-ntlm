@@ -24,7 +24,7 @@ def get_args():
 
 
 def exporthash(args):
-    bad_words = ['aes256', 'aes128', 'md5', 'rc4', '$']
+    bad_words = ['aes256-cts', 'aes128-cts', 'des-cb', 'rc4_hmac', '$']
     usuario = []
     hash = []
     with open(args.file_secretdumps,'r') as f:
