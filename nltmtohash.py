@@ -4,18 +4,22 @@ import re
 
 def get_args():
     parser = argparse.ArgumentParser(
-        description='Script para preparar NTLM DUMP \nBy @z3r082')
+        description='Script para preparar NTLM DUMP y cruzar resultado \nBy @z3r082')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-e', '--export', dest='exportar',
                         action='store_true', help='Export user&hash and onlyhash ')
     group.add_argument('-i', '--import', dest='importar',
                         action='store_true', help='Import hash&pass from crack')
-    parser.add_argument('--file-secretdumps', type=str,
+    parser.add_argument('--file-secretsdump', type=str,
                         required=False, help='With -e.File impacket secretdumps')
     parser.add_argument('-efuh', type=str, required=False,
-                        default="usuariosyhashes.csv", help='With -e.File export user & Hash')
+                        default="usuariosyhashes.csv", help='File export/import user & Hash')
     parser.add_argument('-efoh', type=str, required=False,
-                        default="hashes.txt", help='With -e.File export only hash for crack')
+                        default="hashes.txt", help='With -e. File export only hash for crack')
+    parser.add_argument('-p', '--password', dest='password', type=str, required=False,
+                        default="password.txt", help='With -i. File import hash:password')
+    parser.add_argument('-epass', type=str, required=False,
+                        default="userypass.csv", help='With -i. File export user and pass')
     parser.add_argument('-f', '--filter', dest='filtrado',
                         nargs='+', help='With -e.Words/Domain Filter')
     parser.add_argument('-v', dest='verbose',
@@ -47,7 +51,39 @@ def exporthash(args):
     hashestxt.write(hashess1)
     for key,value in listado.items():
         fichero.writerow([key,value])
-    print("Finalizado\n--------------------------\nSube hashes.txt al crack")
+    print("Finalizado\n--------------------------\nPasa hashes.txt al crack")
+    
+def importhash(args):
+    uyhdic = {}
+    passdic = {}
+    cuser = 0
+    cnull = 0
+    with open(args.efuh,'r') as f:
+        uyh = csv.reader(f)
+        for row in uyh:
+            uyhdic[row[0]] = row[1]
+    with open(args.password,'r') as g:
+        for linea in g.readlines():
+            linea=linea.rstrip('\n')
+            linea = linea.split(':')
+            passdic[linea[0]] = linea[1]
+            
+    resultado = {}
+    for key,value in uyhdic.items():
+        try:
+            resultado[key] = passdic[value]
+        except:
+            resultado[key] = 'Null' 
+            cnull+=1       
+        finally:
+            cuser+=1
+    fichero = csv.writer(open(args.epass,"w",newline=''))
+    for key,value in resultado.items():
+        fichero.writerow([key,value])
+    print('Hay {0} usuarios, de los cuales {1} se ha obtenido la contraseña'.format(cuser,cuser-cnull))
+    print('Esto corresponde a un {0}% de usuarios crackeados'.format((cuser-cnull) * 100/ cuser))
+    print('Exportado a {0}'.format(args.password))
+    print("Finalizado")
                 
 if __name__ == '__main__':
     args = get_args()
@@ -57,6 +93,6 @@ if __name__ == '__main__':
         else:
             print("No file secrets dumps")
     elif args.importar:
-        print("Working... Try new version")
+        importhash(args)
     else:
         print("You must select -e or -i")
