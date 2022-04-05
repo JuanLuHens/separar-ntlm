@@ -38,7 +38,7 @@ optional arguments:
 - Se pasan los dominios separados por espacio con el parametro -f.
 
 ```
-python .\nltmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org
+python .\ntlmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org
 Finalizado
 --------------------------
 Pasa hashes.txt al crack
@@ -53,7 +53,7 @@ Pasa hashes.txt al crack
 - Se pasan los dominios separados por espacio con el parametro -f.
 
 ```
-python .\nltmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org -u usuariosyhashes.csv -a hashes.txt
+python .\ntlmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org -u usuariosyhashes.csv -a hashes.txt
 ```
 ## Opcion i
 
