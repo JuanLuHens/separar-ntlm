@@ -74,6 +74,9 @@ python .\ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt
 ```
 python .\ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt -o userypass.csv
 ```
+
+
+## -- Help
 ```
 usage: ntlmtohash.py [-h] [-e | -i] [--file-secretsdump FILE_SECRETSDUMP] [-u EFUH] [-a EFOH] [-p PASSWORD] [-o EPASS] [-f FILTRADO [FILTRADO ...]] [-n] [-v]
 ```
