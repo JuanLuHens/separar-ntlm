@@ -12,13 +12,13 @@ def get_args():
                         action='store_true', help='Import hash&pass from crack')
     parser.add_argument('--file-secretsdump', type=str,
                         required=False, help='With -e.File impacket secretsdump')
-    parser.add_argument('-efuh', type=str, required=False,
-                        default="usuariosyhashes.csv", help='File export/import user & Hash')
-    parser.add_argument('-efoh', type=str, required=False,
+    parser.add_argument('-u',dest='efuh', type=str, required=False,
+                        default="usuariosyhashes.csv", help='File export/import user&Hash')
+    parser.add_argument('-a',dest='efoh',type=str, required=False,
                         default="hashes.txt", help='With -e. File export only hash for crack')
     parser.add_argument('-p', '--password', dest='password', type=str, required=False,
-                        default="password.txt", help='With -i. File import hash:password')
-    parser.add_argument('-epass', type=str, required=False,
+                        default="password.txt", help='With -i. File import hash:password from crack')
+    parser.add_argument('-o',dest='epass' ,type=str, required=False,
                         default="userypass.csv", help='With -i. File export user and pass')
     parser.add_argument('-f', '--filter', dest='filtrado',
                         nargs='+', help='With -e.Words/Domain Filter')
