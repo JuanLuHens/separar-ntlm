@@ -11,7 +11,7 @@ def get_args():
     group.add_argument('-i', '--import', dest='importar',
                         action='store_true', help='Import hash&pass from crack')
     parser.add_argument('--file-secretsdump', type=str,
-                        required=False, help='With -e.File impacket secretdumps')
+                        required=False, help='With -e.File impacket secretsdump')
     parser.add_argument('-efuh', type=str, required=False,
                         default="usuariosyhashes.csv", help='File export/import user & Hash')
     parser.add_argument('-efoh', type=str, required=False,
@@ -22,6 +22,8 @@ def get_args():
                         default="userypass.csv", help='With -i. File export user and pass')
     parser.add_argument('-f', '--filter', dest='filtrado',
                         nargs='+', help='With -e.Words/Domain Filter')
+    parser.add_argument('-n', '--null', dest='nulos',
+                        action='store_true', help='With -i. Add user with pass no found in export file')
     parser.add_argument('-v', dest='verbose',
                         action="store_true", required=False, help="verbose")
     return parser.parse_args()
@@ -31,7 +33,7 @@ def exporthash(args):
     bad_words = ['aes256-cts', 'aes128-cts', 'des-cb', 'rc4_hmac', '$']
     usuario = []
     hash = []
-    with open(args.file_secretdumps,'r') as f:
+    with open(args.file_secretsdump,'r') as f:
         for linea in f.readlines():
             linea=linea.rstrip('\n')
             linea = linea.lower()
@@ -73,7 +75,8 @@ def importhash(args):
         try:
             resultado[key] = passdic[value]
         except:
-            resultado[key] = 'Null' 
+            if args.nulos:
+                resultado[key] = 'Null' 
             cnull+=1       
         finally:
             cuser+=1
@@ -81,14 +84,14 @@ def importhash(args):
     for key,value in resultado.items():
         fichero.writerow([key,value])
     print('Hay {0} usuarios, de los cuales {1} se ha obtenido la contraseña'.format(cuser,cuser-cnull))
-    print('Esto corresponde a un {0}% de usuarios crackeados'.format((cuser-cnull) * 100/ cuser))
-    print('Exportado a {0}'.format(args.password))
+    print('Esto corresponde a un {0}% de usuarios crackeados'.format(round((cuser-cnull) * 100/ cuser, 2)))
+    print('Exportado a {0}'.format(args.epass))
     print("Finalizado")
                 
 if __name__ == '__main__':
     args = get_args()
     if args.exportar:
-        if args.file_secretdumps:
+        if args.file_secretsdump:
             exporthash(args)
         else:
             print("No file secrets dumps")
