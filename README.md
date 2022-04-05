@@ -2,27 +2,6 @@
 
 ## Funcionamiento
 
-```
-usage: ntlmtohash.py [-h] [-e | -i] [--file-secretsdump FILE_SECRETSDUMP] [-u EFUH] [-a EFOH] [-p PASSWORD] [-o EPASS] [-f FILTRADO [FILTRADO ...]] [-n] [-v]
-```
-
-```
-optional arguments:
-  -h, --help            show this help message and exit
-  -e, --export          Export user&hash and onlyhash
-  -i, --import          Import hash&pass from crack
-  --file-secretsdump FILE_SECRETSDUMP
-                        With -e.File impacket secretsdump
-  -u EFUH               File export/import user&Hash
-  -a EFOH               With -e. File export only hash for crack
-  -p PASSWORD, --password PASSWORD
-                        With -i. File import hash:password from crack
-  -o EPASS              With -i. File export user and pass
-  -f FILTRADO [FILTRADO ...], --filter FILTRADO [FILTRADO ...]
-                        With -e.Words/Domain Filter
-  -n, --null            With -i. Add user with pass no found in export file
-  -v                    verbose                   verbose
-```
 
 ## Ejemplo básico:
 
@@ -94,4 +73,25 @@ python .\ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt
 
 ```
 python .\ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt -o userypass.csv
+```
+```
+usage: ntlmtohash.py [-h] [-e | -i] [--file-secretsdump FILE_SECRETSDUMP] [-u EFUH] [-a EFOH] [-p PASSWORD] [-o EPASS] [-f FILTRADO [FILTRADO ...]] [-n] [-v]
+```
+
+```
+optional arguments:
+  -h, --help            show this help message and exit
+  -e, --export          Export user&hash and onlyhash
+  -i, --import          Import hash&pass from crack
+  --file-secretsdump FILE_SECRETSDUMP
+                        With -e.File impacket secretsdump
+  -u EFUH               File export/import user&Hash
+  -a EFOH               With -e. File export only hash for crack
+  -p PASSWORD, --password PASSWORD
+                        With -i. File import hash:password from crack
+  -o EPASS              With -i. File export user and pass
+  -f FILTRADO [FILTRADO ...], --filter FILTRADO [FILTRADO ...]
+                        With -e.Words/Domain Filter
+  -n, --null            With -i. Add user with pass no found in export file
+  -v                    verbose                   verbose
 ```
