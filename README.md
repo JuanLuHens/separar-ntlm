@@ -17,7 +17,7 @@
 - Se pasan los dominios separados por espacio con el parametro -f.
 
 ```
-python .\ntlmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org
+python ntlmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org
 Finalizado
 --------------------------
 Pasa hashes.txt al crack
@@ -32,7 +32,7 @@ Pasa hashes.txt al crack
 - Se pasan los dominios separados por espacio con el parametro -f.
 
 ```
-python .\ntlmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org -u usuariosyhashes.csv -a hashes.txt
+python ntlmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org -u usuariosyhashes.csv -a hashes.txt
 ```
 ## Opcion i
 
@@ -45,7 +45,7 @@ python .\ntlmtohash.py -e --file-secretsdump dump -f domain1.com domain2.org -u 
   - password.txt. Fichero con los hashes:pass 
 
 ```
-python .\ntlmtohash.py -i
+python ntlmtohash.py -i
 Hay 13465 usuarios, de los cuales 9719 se ha obtenido la contraseña
 Esto corresponde a un 72.18% de usuarios crackeados
 Exportado a userypass.csv
@@ -61,7 +61,7 @@ Finalizado
   - Opcion p password.txt. Fichero con los hashes:pass 
 
 ```
-python .\ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt
+python ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt
 ```
 **Cruzar usuarios:hashes con hashes:pass personalizando entradas y salida**:
 
@@ -72,7 +72,7 @@ python .\ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt
   - Opcion p password.txt. Fichero con los hashes:pass 
 
 ```
-python .\ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt -o userypass.csv
+python ntlmtohash.py -i -u usuariosyhashes.csv -p password.txt -o userypass.csv
 ```
 
 
